@@ -28,7 +28,6 @@
 
         .wrap { max-width: 500px; margin: auto; }
 
-        /* Header cải tiến */
         .hero { text-align: center; margin-bottom: 32px; }
         .hero h1 { font-size: 28px; font-weight: 800; color: var(--primary-dark); letter-spacing: -1px; }
         .hero p { font-size: 15px; color: var(--text-sub); margin-top: 6px; }
@@ -46,7 +45,6 @@
         }
         #convert-count { color: var(--primary); font-weight: 800; }
 
-        /* Card chính */
         .card { 
             background: var(--card-bg); 
             border-radius: 28px; 
@@ -75,11 +73,7 @@
             display: flex; align-items: center; justify-content: center; 
         }
 
-        /* Input area */
-        .input-group {
-            position: relative;
-            margin-bottom: 16px;
-        }
+        .input-group { position: relative; margin-bottom: 16px; }
         .input-wrap { 
             display: flex; 
             align-items: center; 
@@ -113,7 +107,6 @@
         }
         .paste-btn:hover { filter: grayscale(0); transform: scale(1.1); }
 
-        /* Nút Action */
         .go-btn { 
             width: 100%; 
             padding: 18px; 
@@ -129,14 +122,13 @@
             box-shadow: 0 8px 20px rgba(238, 77, 45, 0.25);
         }
         .go-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .go-btn:disabled { background: #cbd5e0; box-shadow: none; cursor: not-allowed; }
+        .go-btn:disabled { background: #cbd5e0; box-shadow: none; cursor: not-allowed; transform: none; }
 
-        /* Kết quả */
         .result-area { display: none; margin-top: 24px; animation: slideUp 0.4s ease; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .divider { height: 1px; background: #eee; margin: 24px 0; position: relative; }
-        .divider::after { content: "Kết quả link rút gọn"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 12px; font-size: 12px; color: #999; }
+        .divider::after { content: "Kết quả link affiliate"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 12px; font-size: 12px; color: #999; white-space: nowrap; }
 
         .result-box { 
             background: #f0fdf4; 
@@ -159,17 +151,16 @@
             cursor: pointer; 
             font-weight: 700;
             transition: 0.2s;
+            white-space: nowrap;
         }
         .copy-btn:hover { background: #15803d; }
 
-        /* Lỗi */
         .err { 
             display: none; margin-top: 15px; padding: 12px; 
             background: #fff1f0; border-radius: 12px; 
             font-size: 13px; color: #cf1322; text-align: center; font-weight: 600;
         }
 
-        /* Hướng dẫn phong cách mới */
         .guide { background: #f8fafc; border-radius: 20px; padding: 24px; margin-top: 24px; border: 1px solid #f1f5f9; }
         .guide-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
         .guide-title::before { content: ""; width: 4px; height: 16px; background: var(--primary); border-radius: 10px; }
@@ -184,7 +175,6 @@
         }
         .step-text { font-size: 14px; color: var(--text-sub); line-height: 1.5; }
 
-        /* Social buttons */
         .social-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 12px; border-radius: 12px;
@@ -194,7 +184,6 @@
         }
         .social-btn:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* QR Section */
         .qr-box { margin-top: 24px; text-align: center; padding-top: 24px; border-top: 1px dashed #eee; }
         .qr-img { width: 200px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .qr-label { margin-top: 12px; font-weight: 700; color: #1e293b; font-size: 15px; }
@@ -208,18 +197,18 @@
         <div class="hero">
             <h1>Shopee Affiliate Tool</h1>
             <p>Tạo link rút gọn chuyên nghiệp trong 1 giây</p>
-            <p>Tham gia cộng đồng — được  gắn hộ link Youtube 24/24 miễn phí</p>
+            <p>Tham gia cộng đồng — được gắn hộ link Youtube 24/24 miễn phí</p>
         </div>
 
         <div class="stats-bar">
-            🚀 Hệ thống đã xử lý <span id="convert-count">0</span> link thành công
+            🚀 Hệ thống đã xử lý <span id="convert-count">—</span> link thành công
         </div>
 
         <div class="card">
             <div class="step-label"><span class="step-num">1</span> Dán link sản phẩm</div>
             <div class="input-group">
                 <div class="input-wrap">
-                    <input id="link" type="text" placeholder="Dán link shopee.vn hoặc shp.ee..." />
+                    <input id="link" type="text" placeholder="Dán link shopee.vn hoặc shp.ee..." autocomplete="off" />
                     <button class="paste-btn" onclick="doPaste()" title="Dán từ Clipboard">📋</button>
                 </div>
             </div>
@@ -251,12 +240,12 @@
                 </div>
                 <div class="step-row">
                     <div class="step-icon">3</div>
-                    <div class="step-text">Hệ thống tự copy link mới, bạn chỉ việc dán vào bài viết.</div>
+                    <div class="step-text">Copy Link, bạn chỉ việc dán vào bài viết.</div>
                 </div>
                 
-                <a target="_blank" href="https://www.facebook.com/groups/1731832854456702" class="social-btn">
+                <a target="_blank" href="https://www.facebook.com/share/p/1CbHxkwtkx/" class="social-btn">
                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Đến bài đăng Facebook
+                    Đi đến bài viết Facebook
                 </a>
             </div>
             <div class="qr-box">
@@ -275,69 +264,145 @@
 
     <script>
         var AFF_ID = "17389970177";
-        var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU-vL-8hcaGTrqyoIBdGLei8Kx54X8Fph3bvHYO8aJ4r7EP7oU5qm5Oiaylhbr5CAb/exec"; 
+        var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU-vL-8hcaGTrqyoIBdGLei8Kx54X8Fph3bvHYO8aJ4r7EP7oU5qm5Oiaylhbr5CAb/exec";
 
         async function initStats() {
             try {
                 const res = await fetch(GOOGLE_SCRIPT_URL + "?short_url=check");
                 const data = await res.json();
-                document.getElementById("convert-count").innerText = data.total_conversions.toLocaleString();
-            } catch (e) {}
+                document.getElementById("convert-count").innerText = Number(data.total_conversions).toLocaleString('vi-VN');
+            } catch (e) {
+                document.getElementById("convert-count").innerText = "—";
+            }
         }
         initStats();
 
-        function extractProduct(link) {
-            var m = link.match(/product\/(\d+)\/(\d+)/);
-            if (m) return "https://shopee.vn/product/" + m[1] + "/" + m[2];
-            m = link.match(/i\.(\d+)\.(\d+)/);
-            if (m) return "https://shopee.vn/product/" + m[1] + "/" + m[2];
-            var sid = link.match(/[?&]shopid=(\d+)/);
-            var iid = link.match(/[?&]itemid=(\d+)/);
-            if (sid && iid) return "https://shopee.vn/product/" + sid[1] + "/" + iid[1];
-            return link;
+        function build(link) {
+            let s = "", i = "";
+            let m1 = link.match(/product\/(\d+)\/(\d+)/);
+            let m2 = link.match(/-i\.(\d+)\.(\d+)/);
+            let m3 = link.match(/\/(\d+)\/(\d+)(?:\?|$)/);
+            if (m1)      { s = m1[1]; i = m1[2]; }
+            else if (m2) { s = m2[1]; i = m2[2]; }
+            else if (m3) { s = m3[1]; i = m3[2]; }
+            if (s && i) {
+                let origin = "https://shopee.vn/product/" + s + "/" + i;
+                return "https://s.shopee.vn/an_redir?origin_link=" + origin + "&affiliate_id=" + AFF_ID + "&sub_id=githubtool";
+            }
+            return null;
+        }
+
+        function isShortLink(val) {
+            return val.includes("shp.ee") 
+                || val.includes("s.shopee.vn") 
+                || (!val.includes("product/") && !val.includes("-i."));
         }
 
         async function convert() {
-            var input = document.getElementById("link").value.trim();
-            if (!input) return showErr("Vui lòng dán link.");
-            
-            var btn = document.getElementById("go-btn");
-            btn.disabled = true;
-            btn.innerText = "Đang xử lý...";
-            hideErr();
+            var val = document.getElementById("link").value.trim();
+            if (!val) return showErr("Vui lòng dán link.");
 
-            try {
-                const res = await fetch(GOOGLE_SCRIPT_URL + "?short_url=" + encodeURIComponent(input));
-                const data = await res.json();
-                
-                document.getElementById("convert-count").innerText = data.total_conversions.toLocaleString();
-                var product = extractProduct(data.long_url);
-                var aff = "https://s.shopee.vn/an_redir?origin_link=" + encodeURIComponent(product) + "&affiliate_id=" + AFF_ID + "&sub_id=githubtool";
-                
-                document.getElementById("result").value = aff;
-                document.getElementById("result-area").style.display = "block";
-                doCopy(true);
-            } catch (e) {
-                showErr("Lỗi hệ thống hoặc link không hợp lệ.");
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 3 4 14 11 14 11 21 20 10 13 10 13 3"></polyline></svg> Tạo link ngay`;
+            var btn = document.getElementById("go-btn");
+            var resArea = document.getElementById("result-area");
+
+            btn.disabled = true;
+            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Đang xử lý...`;
+            hideErr();
+            resArea.style.display = "none";
+
+            if (val.includes("an_redir")) {
+                document.getElementById("result").value = val;
+                resArea.style.display = "block";
+                doCopy();
+                resetBtn();
+                return;
+            }
+
+            var final = null;
+
+            if (isShortLink(val)) {
+                try {
+                    const controller = new AbortController();
+                    const timeout = setTimeout(() => controller.abort(), 10000);
+                    const res = await fetch(GOOGLE_SCRIPT_URL + "?short_url=" + encodeURIComponent(val), { signal: controller.signal });
+                    clearTimeout(timeout);
+                    const data = await res.json();
+                    document.getElementById("convert-count").innerText = Number(data.total_conversions).toLocaleString('vi-VN');
+                    final = build(data.long_url);
+                } catch (e) {
+                    if (e.name === "AbortError") {
+                        showErr("Hết thời gian chờ. Vui lòng thử lại.");
+                    } else {
+                        showErr("Lỗi kết nối máy chủ. Vui lòng thử lại.");
+                    }
+                }
+            } else {
+                final = build(val);
+                if (final) fetch(GOOGLE_SCRIPT_URL + "?short_url=count_only").catch(() => {});
+            }
+
+            if (final) {
+                document.getElementById("result").value = final;
+                resArea.style.display = "block";
+                doCopy();
+            } else if (!document.getElementById("err").style.display || document.getElementById("err").style.display === "none") {
+                showErr("Link không hợp lệ hoặc không tìm thấy ID sản phẩm.");
+            }
+
+            resetBtn();
+        }
+
+        function resetBtn() {
+            var btn = document.getElementById("go-btn");
+            btn.disabled = false;
+            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 3 4 14 11 14 11 21 20 10 13 10 13 3"></polyline></svg> Tạo link ngay`;
+        }
+
+        function doCopy() {
+            var inp = document.getElementById("result");
+            var b = document.getElementById("copy-btn");
+            var text = inp.value;
+            if (!text) return;
+
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, 99999);
+
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+
+            if (ok) {
+                b.innerText = "✓ Đã copy";
+                setTimeout(() => { b.innerText = "Copy"; }, 2000);
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    b.innerText = "✓ Đã copy";
+                    setTimeout(() => { b.innerText = "Copy"; }, 2000);
+                }).catch(() => {
+                    b.innerText = "Thủ công copy";
+                });
             }
         }
 
-        function doCopy(isAuto = false) {
-            var inp = document.getElementById("result");
-            var b = document.getElementById("copy-btn");
-            inp.select();
-            navigator.clipboard.writeText(inp.value).then(() => {
-                b.innerText = "✓";
-                setTimeout(() => b.innerText = "Copy", 2000);
-            });
+        function showErr(m) {
+            var e = document.getElementById("err");
+            e.innerText = "⚠️ " + m;
+            e.style.display = "block";
         }
 
-        function showErr(m) { var e = document.getElementById("err"); e.innerText = "⚠️ " + m; e.style.display = "block"; }
-        function hideErr() { document.getElementById("err").style.display = "none"; }
-        async function doPaste() { try { document.getElementById("link").value = await navigator.clipboard.readText(); } catch (e) {} }
+        function hideErr() {
+            document.getElementById("err").style.display = "none";
+        }
+
+        async function doPaste() {
+            try {
+                document.getElementById("link").value = await navigator.clipboard.readText();
+            } catch (e) {}
+        }
     </script>
 </body>
 </html>
