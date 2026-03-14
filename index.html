@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopee Affiliate Tool Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #ee4d2d;
+            --primary-light: #fff5f2;
+            --primary-dark: #c0351a;
+            --bg: #f8f9fb;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .wrap { max-width: 500px; margin: auto; }
+
+        /* Header cải tiến */
+        .hero { text-align: center; margin-bottom: 32px; }
+        .hero h1 { font-size: 28px; font-weight: 800; color: var(--primary-dark); letter-spacing: -1px; }
+        .hero p { font-size: 15px; color: var(--text-sub); margin-top: 6px; }
+
+        .stats-bar { 
+            text-align: center; 
+            background: white; 
+            border-radius: 100px; 
+            padding: 8px 16px; 
+            margin-bottom: 24px; 
+            font-size: 13px; 
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #edf2f7;
+        }
+        #convert-count { color: var(--primary); font-weight: 800; }
+
+        /* Card chính */
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 28px; 
+            padding: 32px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .step-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            color: var(--primary-dark); 
+            text-transform: uppercase; 
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .step-num { 
+            width: 22px; height: 22px; 
+            border-radius: 6px; 
+            background: var(--primary); 
+            color: white; 
+            font-size: 12px; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
+        /* Input area */
+        .input-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .input-wrap { 
+            display: flex; 
+            align-items: center; 
+            background: #f1f3f5; 
+            border: 2px solid transparent; 
+            border-radius: 16px; 
+            transition: all 0.3s;
+        }
+        .input-wrap:focus-within {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.1);
+        }
+        .input-wrap input { 
+            flex: 1; 
+            padding: 16px; 
+            border: none; 
+            outline: none; 
+            background: transparent; 
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .paste-btn { 
+            padding: 0 16px; 
+            background: transparent; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 18px;
+            filter: grayscale(1);
+            transition: 0.2s;
+        }
+        .paste-btn:hover { filter: grayscale(0); transform: scale(1.1); }
+
+        /* Nút Action */
+        .go-btn { 
+            width: 100%; 
+            padding: 18px; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 16px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 700; 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(238, 77, 45, 0.25);
+        }
+        .go-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .go-btn:disabled { background: #cbd5e0; box-shadow: none; cursor: not-allowed; }
+
+        /* Kết quả */
+        .result-area { display: none; margin-top: 24px; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .divider { height: 1px; background: #eee; margin: 24px 0; position: relative; }
+        .divider::after { content: "Kết quả link rút gọn"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 12px; font-size: 12px; color: #999; }
+
+        .result-box { 
+            background: #f0fdf4; 
+            border: 1px solid #bbf7d0; 
+            border-radius: 14px; 
+            padding: 8px; 
+            display: flex; 
+            align-items: center; 
+        }
+        .result-box input { 
+            flex: 1; border: none; outline: none; background: transparent; 
+            padding: 10px; font-size: 14px; color: #166534; font-weight: 600; 
+        }
+        .copy-btn { 
+            padding: 10px 20px; 
+            background: #16a34a; 
+            color: white; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .copy-btn:hover { background: #15803d; }
+
+        /* Lỗi */
+        .err { 
+            display: none; margin-top: 15px; padding: 12px; 
+            background: #fff1f0; border-radius: 12px; 
+            font-size: 13px; color: #cf1322; text-align: center; font-weight: 600;
+        }
+
+        /* Hướng dẫn phong cách mới */
+        .guide { background: #f8fafc; border-radius: 20px; padding: 24px; margin-top: 24px; border: 1px solid #f1f5f9; }
+        .guide-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .guide-title::before { content: ""; width: 4px; height: 16px; background: var(--primary); border-radius: 10px; }
+        
+        .step-row { display: flex; gap: 14px; margin-bottom: 16px; }
+        .step-icon { 
+            width: 28px; height: 28px; border-radius: 50%; 
+            background: white; color: var(--primary); 
+            font-weight: 800; font-size: 13px;
+            display: flex; align-items: center; justify-content: center; 
+            flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .step-text { font-size: 14px; color: var(--text-sub); line-height: 1.5; }
+
+        /* Social buttons */
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 12px; border-radius: 12px;
+            background: #1877f2; color: white; text-decoration: none;
+            font-weight: 700; font-size: 14px; margin-top: 12px;
+            transition: 0.3s;
+        }
+        .social-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* QR Section */
+        .qr-box { margin-top: 24px; text-align: center; padding-top: 24px; border-top: 1px dashed #eee; }
+        .qr-img { width: 200px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .qr-label { margin-top: 12px; font-weight: 700; color: #1e293b; font-size: 15px; }
+        .qr-link { color: #2563eb; font-size: 13px; text-decoration: none; display: block; margin-top: 4px; }
+
+        .footer { text-align: center; margin-top: 32px; font-size: 12px; color: #94a3b8; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="hero">
+            <h1>Shopee Affiliate Tool</h1>
+            <p>Tạo link rút gọn chuyên nghiệp trong 1 giây</p>
+            <p>Tham gia cộng đồng — được  gắn hộ link Youtube 24/24 miễn phí</p>
+        </div>
+
+        <div class="stats-bar">
+            🚀 Hệ thống đã xử lý <span id="convert-count">0</span> link thành công
+        </div>
+
+        <div class="card">
+            <div class="step-label"><span class="step-num">1</span> Dán link sản phẩm</div>
+            <div class="input-group">
+                <div class="input-wrap">
+                    <input id="link" type="text" placeholder="Dán link shopee.vn hoặc shp.ee..." />
+                    <button class="paste-btn" onclick="doPaste()" title="Dán từ Clipboard">📋</button>
+                </div>
+            </div>
+
+            <button class="go-btn" id="go-btn" onclick="convert()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 3 4 14 11 14 11 21 20 10 13 10 13 3"></polyline></svg>
+                Tạo link ngay
+            </button>
+
+            <div class="err" id="err"></div>
+
+            <div class="result-area" id="result-area">
+                <div class="divider"></div>
+                <div class="result-box">
+                    <input id="result" type="text" readonly />
+                    <button class="copy-btn" id="copy-btn" onclick="doCopy()">Copy</button>
+                </div>
+            </div>
+
+            <div class="guide">
+                <div class="guide-title">Hướng dẫn nhanh</div>
+                <div class="step-row">
+                    <div class="step-icon">1</div>
+                    <div class="step-text">Copy link sản phẩm từ ứng dụng Shopee.</div>
+                </div>
+                <div class="step-row">
+                    <div class="step-icon">2</div>
+                    <div class="step-text">Dán vào ô trên và nhấn <b>Tạo link ngay</b>.</div>
+                </div>
+                <div class="step-row">
+                    <div class="step-icon">3</div>
+                    <div class="step-text">Hệ thống tự copy link mới, bạn chỉ việc dán vào bài viết.</div>
+                </div>
+                
+                <a target="_blank" href="https://www.facebook.com/share/p/1CbHxkwtkx/" class="social-btn">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Tham gia Group Facebook
+                </a>
+            </div>
+            <div class="qr-box">
+                <div class="qr-label">Tham gia cộng đồng Zalo</div>
+                <a href="https://zalo.me/g/svdjxc658" class="qr-link">👉 Bấm vào đây để vào nhóm nhanh</a>
+                <div style="margin-top: 15px;">
+                    <img src="zalo-qr.jpg" class="qr-img" alt="Zalo QR" />
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 Shopee Affiliate Tool • Dev by Bruce - Contact to me with https://www.facebook.com/bruce.19598/
+        </div>
+    </div>
+
+    <script>
+        var AFF_ID = "17335970208";
+        var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU-vL-8hcaGTrqyoIBdGLei8Kx54X8Fph3bvHYO8aJ4r7EP7oU5qm5Oiaylhbr5CAb/exec"; 
+
+        async function initStats() {
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?short_url=check");
+                const data = await res.json();
+                document.getElementById("convert-count").innerText = data.total_conversions.toLocaleString();
+            } catch (e) {}
+        }
+        initStats();
+
+        function extractProduct(link) {
+            var m = link.match(/product\/(\d+)\/(\d+)/);
+            if (m) return "https://shopee.vn/product/" + m[1] + "/" + m[2];
+            m = link.match(/i\.(\d+)\.(\d+)/);
+            if (m) return "https://shopee.vn/product/" + m[1] + "/" + m[2];
+            var sid = link.match(/[?&]shopid=(\d+)/);
+            var iid = link.match(/[?&]itemid=(\d+)/);
+            if (sid && iid) return "https://shopee.vn/product/" + sid[1] + "/" + iid[1];
+            return link;
+        }
+
+        async function convert() {
+            var input = document.getElementById("link").value.trim();
+            if (!input) return showErr("Vui lòng dán link.");
+            
+            var btn = document.getElementById("go-btn");
+            btn.disabled = true;
+            btn.innerText = "Đang xử lý...";
+            hideErr();
+
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?short_url=" + encodeURIComponent(input));
+                const data = await res.json();
+                
+                document.getElementById("convert-count").innerText = data.total_conversions.toLocaleString();
+                var product = extractProduct(data.long_url);
+                var aff = "https://s.shopee.vn/an_redir?origin_link=" + encodeURIComponent(product) + "&affiliate_id=" + AFF_ID + "&sub_id=githubtool";
+                
+                document.getElementById("result").value = aff;
+                document.getElementById("result-area").style.display = "block";
+                doCopy(true);
+            } catch (e) {
+                showErr("Lỗi hệ thống hoặc link không hợp lệ.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 3 4 14 11 14 11 21 20 10 13 10 13 3"></polyline></svg> Tạo link ngay`;
+            }
+        }
+
+        function doCopy(isAuto = false) {
+            var inp = document.getElementById("result");
+            var b = document.getElementById("copy-btn");
+            inp.select();
+            navigator.clipboard.writeText(inp.value).then(() => {
+                b.innerText = "✓";
+                setTimeout(() => b.innerText = "Copy", 2000);
+            });
+        }
+
+        function showErr(m) { var e = document.getElementById("err"); e.innerText = "⚠️ " + m; e.style.display = "block"; }
+        function hideErr() { document.getElementById("err").style.display = "none"; }
+        async function doPaste() { try { document.getElementById("link").value = await navigator.clipboard.readText(); } catch (e) {} }
+    </script>
+</body>
+</html>
