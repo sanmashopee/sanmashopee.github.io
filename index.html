@@ -203,6 +203,35 @@
     .btn-main.loading .btn-icon { display: none; }
     @keyframes rotate { to { transform: rotate(360deg); } }
 
+    .btn-fb {
+      width: 100%;
+      margin-top: 10px;
+      padding: 14px 16px;
+      background: #1877f2;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(24, 119, 242, 0.35);
+      transition: transform 0.12s, box-shadow 0.12s, background 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .btn-fb:hover {
+      background: #166fe5;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(24, 119, 242, 0.42);
+    }
+    .btn-fb:active { transform: scale(0.98); }
+    .btn-fb svg { width: 18px; height: 18px; flex: 0 0 18px; }
+
     /* ── RESULT ── */
     #result-box {
       display: none;
@@ -444,6 +473,17 @@
         <span class="spin">⏳</span>
         Tạo Link Giảm Giá Ngay!
       </button>
+      <a
+        class="btn-fb"
+        href="https://www.facebook.com/groups/944741981673790?multi_permalinks=953292917485363"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.49 0-1.953.925-1.953 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        Đi đến bài viết Facebook
+      </a>
 
       <div id="result-box">
         <div class="result-label">✅ Link đã gắn mã giảm giá thành công!</div>
@@ -488,18 +528,18 @@
     </div>
 
     <!-- VOUCHER IMAGE -->
-    <div class="voucher-box">
+    <!-- <div class="voucher-box">
       <div class="v-header">🎟️ Chi Tiết Mã Giảm Giá</div>
       <img src="voucher-fb.jpg" alt="Mã giảm giá Shopee 22%">
       <div class="voucher-link">
         Xem thêm tại nhóm Facebook: 
-        <a href="https://www.facebook.com/groups/944741981673790/posts/944742401673748/" target="_blank" rel="noopener">👉 Nhấn vào đây để xem chi tiết</a>
+        <a href="https://www.facebook.com/groups/1731832854456702/posts/1740592203580767/" target="_blank" rel="noopener">👉 Nhấn vào đây để xem chi tiết</a>
       </div>
     </div>
 
     <footer>
       Công cụ hỗ trợ mua sắm – Miễn phí &amp; không lưu dữ liệu của bạn 💛
-    </footer>
+    </footer> -->
   </div>
 
   <script>
